@@ -3,6 +3,10 @@ import 'constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'description.dart';
 
+var carLink = '';
+var carName = '';
+var carTagIndex = '';
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -95,16 +99,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Expanded(
                       child: ListView(children: [
                         ReusableCard(
+                          carTag: 'car1',
                           name: 'Honda fit',
                           link:
                               'https://www.motortrend.com/uploads/sites/10/2021/06/2020-honda-fit-ex-5door-hatchback-angular-front.png?fit=around%7C875:492.1875',
                         ),
                         ReusableCard(
+                          carTag: 'car2',
                           name: 'Chevrolet Spark',
                           link:
                               'https://www.motortrend.com/uploads/sites/10/2019/09/2020-chevrolet-spark-ls-5door-hatchback-angular-front.png?fit=around%7C875:492.1875',
                         ),
                         ReusableCard(
+                          carTag: 'car3',
                           name: 'Hyundai',
                           link:
                               'https://www.motortrend.com/uploads/sites/10/2019/04/2019-hyundai-accent-se-sedan-angular-front.png?fit=around%7C875:492.1875',
@@ -116,6 +123,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Expanded(
                       child: ListView(children: [
                         ReusableCard(
+                          carTag: 'car1',
                           name: 'Toyota hilux',
                           link:
                               'https://www.motortrend.com/uploads/sites/5/2021/02/Arctic-Trucks-Toyota-Hilux-Invincible-AT35-01.jpg?fit=around%7C875:492',
@@ -127,6 +135,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Expanded(
                       child: ListView(children: [
                         ReusableCard(
+                          carTag: 'car',
                           name: 'Honda fit',
                           link:
                               'https://www.motortrend.com/uploads/sites/10/2021/06/2020-honda-fit-ex-5door-hatchback-angular-front.png?fit=around%7C875:492.1875',
@@ -138,6 +147,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Expanded(
                       child: ListView(children: [
                         ReusableCard(
+                          carTag: 'car3',
                           name: 'Honda fit',
                           link:
                               'https://www.motortrend.com/uploads/sites/10/2021/06/2020-honda-fit-ex-5door-hatchback-angular-front.png?fit=around%7C875:492.1875',
@@ -157,20 +167,31 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 }
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard({required this.name, required this.link});
+  ReusableCard({required this.name, required this.link, required this.carTag});
 
   String name;
   String link;
+  String carTag;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        carLink = link;
+        carName = name;
+        carTagIndex = carTag;
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Description()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => Description(
+                      link: carLink,
+                      name: carName,
+                      tag: carTagIndex,
+                    )));
       },
       child: Card(
         elevation: 5.0,
-        color: Color(0xffFFF9DE),
+        color: kBackgroundColor,
         child: Padding(
           padding: EdgeInsets.all(5.0),
           child: Column(
@@ -178,28 +199,34 @@ class ReusableCard extends StatelessWidget {
             children: [
               Container(
                 child: Stack(children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 70),
-                    child: Align(
-                      alignment: AlignmentDirectional.topCenter,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.teal,
-                            borderRadius: BorderRadius.circular(10)),
-                        width: double.infinity,
-                        height: 100,
+                  Hero(
+                    tag: 'background$carTag',
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 70),
+                      child: Align(
+                        alignment: AlignmentDirectional.topCenter,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.teal,
+                              borderRadius: BorderRadius.circular(10)),
+                          width: double.infinity,
+                          height: 100,
+                        ),
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: AlignmentDirectional.topEnd,
-                    child: Container(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network(
-                          link,
-                          height: 150,
-                          width: 250,
+                  Hero(
+                    tag: carTag,
+                    child: Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.network(
+                            link,
+                            height: 150,
+                            width: 250,
+                          ),
                         ),
                       ),
                     ),
