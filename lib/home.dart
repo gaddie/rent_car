@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                 child: TextField(decoration: kTextFieldDecoration)),
             TabBar(
-              unselectedLabelColor: Colors.grey,
+              unselectedLabelColor: Colors.black,
               labelColor: Colors.teal,
               tabs: [
                 Tab(
