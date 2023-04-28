@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'description.dart';
+import 'menu.dart';
 
 var carLink = '';
 var carName = '';
@@ -32,10 +33,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Icon(
-                      Icons.menu,
-                      color: Colors.black,
+                  GestureDetector(
+                    onTap: () {
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => Menu()));
+                    },
+                    child: Container(
+                      child: Icon(
+                        Icons.menu,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                   Container(
