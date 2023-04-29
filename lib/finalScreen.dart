@@ -91,25 +91,108 @@ class _HiringPageState extends State<HiringPage> {
                     color: Colors.white,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text('Price',
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 70, vertical: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Price',
+                          style: GoogleFonts.getFont(
+                            'Teko',
+                            fontSize: 25,
+                            color: Colors.white,
+                          )),
+                      Text(
+                        'Ksh: $price',
                         style: GoogleFonts.getFont(
                           'Teko',
                           fontSize: 25,
                           color: Colors.white,
-                        )),
-                    Text(
-                      'Ksh: $price',
-                      style: GoogleFonts.getFont(
-                        'Teko',
-                        fontSize: 25,
-                        color: Colors.white,
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 70),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Discount',
+                          style: GoogleFonts.getFont(
+                            'Teko',
+                            fontSize: 25,
+                            color: Colors.white,
+                          )),
+                      Text(
+                        'Ksh: 0',
+                        style: GoogleFonts.getFont(
+                          'Teko',
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 70),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Total',
+                          style: GoogleFonts.getFont(
+                            'Teko',
+                            fontSize: 25,
+                            color: Colors.white,
+                          )),
+                      Text(
+                        'Ksh: 3000',
+                        style: GoogleFonts.getFont(
+                          'Teko',
+                          fontSize: 45,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20, right: 50, left: 50),
+                  child: Card(
+                    elevation: 5,
+                    child: Image.network(
+                        'https://store-images.s-microsoft.com/image/apps.17182.13510798886601574.52710461-ded7-47e6-94ce-9a0e2d346c91.3481833f-0275-4263-8686-d91736c1295a?mode=scale&q=90&h=400&w=800&background=%23464646'),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  child: Row(children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back_ios),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.green),
+                        )),
+                    SizedBox(
+                      width: 20,
                     ),
-                  ],
-                )
+                    Expanded(
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'HIRE CAR',
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.orange),
+                          )),
+                    ),
+                  ]),
+                ),
               ],
             ),
           ])),
